@@ -38,8 +38,16 @@ public class StartActivity extends AppCompatActivity {
             startActivity(authActivity);
 
 
+
+
 //            Toast.makeText(StartActivity.this, "UnAutho", Toast.LENGTH_SHORT).show();
         }
+
+    }
+    @Override
+    protected void onPause(){
+        super.onPause();
+        finish();
 
     }
 

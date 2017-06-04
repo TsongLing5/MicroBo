@@ -1,6 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+    
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/radius_shape">
+            <ImageView
+                android:id="@+id/imageView_User"
+
+
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="277dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/textView_UserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="User"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textView_Time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time"/>
+                <TextView
+                    android:id="@+id/textView_Source"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sourcce"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:gravity="right"
+            android:layout_marginBottom="0dp"
+            android:weightSum="1">
+            <TextView
+                android:id="@+id/textView_More"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:text="▽"
+                android:layout_weight="0.78" />
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/textView_Content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+
+        android:text="Content"/>
+
+    <com.example.tsongling5.microbo.view.NineGridTestLayout
+        android:id="@+id/ninegridLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+
+        />
+    <!--<com.example.tsongling5.microbo.NineGridlayout-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:id="@+id/iv_ngrid_layout"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_width="match_parent" />-->
+
+    <!--<com.example.tsongling5.microbo.CustomImageView-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:id="@+id/iv_oneimage"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:orientation="horizontal"
+        android:layout_weight="0.03">
+
+
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+
+            android:layout_gravity="center_vertical"
+            android:id="@+id/shareComponent"
+            android:clickable="true">
+
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:background="@drawable/repost"
+                android:id="@+id/item_share"
+
+                android:layout_alignBottom="@+id/share_count"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="32dp" />
+            <TextView
+                android:id="@+id/share_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="88"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/item_share" />
+        </RelativeLayout>
+
+        <!---->
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+
+            android:layout_gravity="center_vertical"
+            android:id="@+id/commentComponent"
+            android:clickable="true">
+
+
+        <ImageView
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:background="@drawable/comment"
+            android:id="@+id/item_comment"
+            android:layout_alignBottom="@+id/comments_count"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="33dp" />
+        <TextView
+            android:id="@+id/comments_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="88"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/item_comment" />
+    </RelativeLayout>
+
+
+    <!---->
+        <RelativeLayout
+            android:id="@+id/likeComponent"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:clickable="true">
+
+            <!--<Button-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="赞"/>-->
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:background="@drawable/thumb_up"
+                android:id="@+id/imageView2"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="38dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="99"
+                android:id="@+id/attitudes_count"
+                android:layout_gravity="center"
+                android:layout_alignTop="@+id/imageView2"
+                android:layout_toEndOf="@+id/imageView2" />
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -25,13 +25,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
             android:configChanges="keyboardHidden|orientation"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="false" >
-        </activity>
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"></activity>
 
         <!-- 调用新浪原生SDK，需要注册的回调activity -->
         <activity
@@ -39,13 +37,14 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
                 <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-
-        <activity android:name=".AuthActivity"></activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".AuthActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Activity.PersonalActivity" />
+        <activity android:name=".Activity.Message"></activity>
     </application>
 
 </manifest>

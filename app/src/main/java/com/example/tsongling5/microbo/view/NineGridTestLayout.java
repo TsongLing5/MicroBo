@@ -6,11 +6,13 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Toast;
 
-import com.hmy.ninegridlayout.util.ImageLoaderUtil;
+import com.example.tsongling5.microbo.utils.ImageLoaderUtil;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.util.List;
+
+//import com.hmy.ninegridlayout.util.ImageLoaderUtil;
 
 /**
  * 描述：

@@ -9,7 +9,9 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
-import com.hmy.ninegridlayout.R;
+import com.example.tsongling5.microbo.R;
+
+//import com.hmy.ninegridlayout.R;
 
 
 /**

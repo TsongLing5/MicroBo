@@ -4,10 +4,12 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.widget.ImageView;
 
-import com.hmy.ninegridlayout.R;
+import com.example.tsongling5.microbo.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+
+//import com.hmy.ninegridlayout.R;
 
 /**
  * Created by HMY
@@ -21,8 +23,8 @@ public class ImageLoaderUtil {
     public static DisplayImageOptions getPhotoImageOption() {
         Integer extra = 1;
         DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true)
-                .showImageForEmptyUri(R.drawable.banner_default).showImageOnFail(R.drawable.banner_default)
-                .showImageOnLoading(R.drawable.banner_default)
+                .showImageForEmptyUri(R.drawable.refresh).showImageOnFail(R.drawable.refresh)
+                .showImageOnLoading(R.drawable.refresh)
                 .extraForDownloader(extra)
                 .bitmapConfig(Bitmap.Config.RGB_565).build();
         return options;

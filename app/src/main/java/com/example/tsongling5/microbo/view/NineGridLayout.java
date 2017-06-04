@@ -11,12 +11,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
-import com.hmy.ninegridlayout.R;
+import com.example.tsongling5.microbo.R;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TimerTask;
+
+//import com.hmy.ninegridlayout.R;
 
 /**
  * 描述:
