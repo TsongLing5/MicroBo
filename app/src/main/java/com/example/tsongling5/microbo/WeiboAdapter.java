@@ -12,9 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tsongling5.microbo.utils.ScreenTools;
+import com.example.tsongling5.microbo.view.NineGridTestLayout;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -68,8 +70,12 @@ public class WeiboAdapter extends ArrayAdapter<Weibo>{
             viewHolder.userName=(TextView)view.findViewById(R.id.textView_UserName);
             viewHolder.attitude=(TextView)view.findViewById(R.id.attitudes_count);
             viewHolder.repost=(TextView)view.findViewById(R.id.share_count);
+            viewHolder.more=(TextView)view.findViewById(R.id.textView_More) ;
             viewHolder.comment=(TextView)view.findViewById(R.id.comments_count);
             viewHolder.repostLayout=(RelativeLayout)view.findViewById(R.id.shareComponent);
+            viewHolder.commentLayout=(RelativeLayout)view.findViewById(R.id.commentComponent);
+            viewHolder.repostLayout=(RelativeLayout)view.findViewById(R.id.likeComponent);
+            viewHolder.layout=(NineGridTestLayout) view.findViewById(R.id.ninegridLayout);
 //            viewHolder.nineGridLayout=( NineGridTestModel)convertView.findViewById(R.id.ninegridLayout);
 
 
@@ -105,7 +111,7 @@ public class WeiboAdapter extends ArrayAdapter<Weibo>{
         viewHolder.userName.setText(weibo.getUserName());
         viewHolder.content.setText(weibo.getWeiboContent());
         viewHolder.time.setText(weibo.getPublishTime());
-        viewHolder.source.setText("来自于地球的 "+weibo.getPublishSource().substring(weibo.getPublishSource().indexOf(">")+1).replace("</a>",""));//删除无关字符
+        viewHolder.source.setText("来自于火星的 "+weibo.getPublishSource().substring(weibo.getPublishSource().indexOf(">")+1).replace("</a>",""));//删除无关字符
         viewHolder.attitude.setText(String.valueOf(weibo.getAttitudeCount()));
         viewHolder.repost.setText(String.valueOf(weibo.getRepostCount()));
         viewHolder.comment.setText(String.valueOf(weibo.getCommentCount()));
@@ -116,11 +122,37 @@ public class WeiboAdapter extends ArrayAdapter<Weibo>{
             }
         });
 
+        viewHolder.commentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "评论", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        viewHolder.repostLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "赞赞赞", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        viewHolder.more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "more", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
 
 
         imageLoader.displayImage(weibo.getUserImage(), viewHolder.userImage, options);
 
 
+        viewHolder.layout.setIsShowAll(false);
+        viewHolder.layout.setSpacing(8);
+//        ArrayList<String> BPic=getBPics(weibo.getPicUrl());
+        viewHolder.layout.setUrlList(getBPics(weibo.getPicUrl()));
 //        Integer.toString(i)
         return view;
 
@@ -128,6 +160,7 @@ public class WeiboAdapter extends ArrayAdapter<Weibo>{
 
 
     }
+
 
 
     private void handlerOneImage(ViewHolder viewHolder, Image image) {
@@ -168,11 +201,12 @@ public class WeiboAdapter extends ArrayAdapter<Weibo>{
         TextView attitude;
         TextView comment;
         TextView repost;
+        TextView more;
         RelativeLayout likeLayout;
         RelativeLayout commentLayout;
         RelativeLayout repostLayout;
 
-//        NineGridTestLayout layout;
+        NineGridTestLayout layout;
 //        public ViewHolder(View view) {
 //            layout = (NineGridTestLayout) view.findViewById(R.id.layout_nine_grid);
 //        }
@@ -180,4 +214,23 @@ public class WeiboAdapter extends ArrayAdapter<Weibo>{
 //        public NineGridlayout ivMore;
         public CustomImageView ivOne;
     }
+
+    private ArrayList<String> getBPics(ArrayList<String> picsUrl){
+        String BPictemp;
+        ArrayList<String> BPics = new ArrayList<>();
+//        if(picsUrl != null && picsUrl.isEmpty()) {
+        if(picsUrl != null) {
+//        if(picsUrl.size()>0) {
+                for (int i = 0; i < picsUrl.size(); i++) {
+                    BPictemp=picsUrl.get(i).replace("thumbnail", "bmiddle");
+//                picsUrl.get(i).replace("thumbnail", "bmiddle");
+                    BPics.add(BPictemp);
+                }
+
+        }
+
+        return BPics;
+    }
+
+
 }

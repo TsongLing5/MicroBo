@@ -323,8 +323,14 @@ public class MainActivity extends AppCompatActivity
 
 
                     for(int i=0;i<statuses.statusList.size();i++) {
+
                         Status status = statuses.statusList.get(i);
 
+//                        if(!status.pic_urls.isEmpty()) {
+//                            for (int j = 0; j < status.pic_urls.size(); j++) {
+//                                status.pic_urls.get(i).replace("thumbnail", "bmiddle");
+//                            }
+//                        }
                        Weibo weibo = new Weibo(status);
                         weiboList.add(weibo);
                         if(i==statuses.statusList.size()-1) {

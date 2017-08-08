@@ -29,7 +29,7 @@
             android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
             android:configChanges="keyboardHidden|orientation"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:windowSoftInputMode="adjustResize" />
 
         <!-- 调用新浪原生SDK，需要注册的回调activity -->
         <activity
@@ -44,7 +44,8 @@
         <activity android:name=".AuthActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Activity.PersonalActivity" />
-        <activity android:name=".Activity.Message"></activity>
+        <activity android:name=".Activity.Message" />
+        <activity android:name=".Activity.MoreList"></activity>
     </application>
 
 </manifest>

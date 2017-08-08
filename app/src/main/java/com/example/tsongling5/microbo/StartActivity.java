@@ -25,7 +25,7 @@ public class StartActivity extends AppCompatActivity {
         mAccessToken=AccessTokenKeeper.readAccessToken(this);
 //        Intent loginActivity=new Intent(StartActivity.this,AuthActivity.class);
 //        startActivity(loginActivity);
-        if(mAccessToken != null) {
+        if(!mAccessToken.getUid().isEmpty()) {
             Toast.makeText(StartActivity.this, mAccessToken.getUid(), Toast.LENGTH_SHORT).show();
 
 

@@ -140,4 +140,22 @@ public class Weibo {
         return this.repostCount;
     }
 
+
+
+
+    private ArrayList<String> changePic2Bmiddle(ArrayList<String> pics){
+
+        ArrayList<String> newPic = null;
+        String temp;
+        for(int i=0;i<pics.size();i++)
+        {
+            temp=pics.get(i);
+            temp=temp.replace("thumbnail","bmiddle");
+//        pics.set(i,pics.get(i).replace("thumbnail","bmiddle"));
+            newPic.set(i,temp);
+
+        }
+        return newPic;
+    }
+
 }
