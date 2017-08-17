@@ -16,7 +16,7 @@
         android:id="@+id/weiboListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:dividerHeight="10px"
+        android:dividerHeight="5px"
         >
 
     </ListView>

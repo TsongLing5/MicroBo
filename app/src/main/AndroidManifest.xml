@@ -45,7 +45,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Activity.PersonalActivity" />
         <activity android:name=".Activity.Message" />
-        <activity android:name=".Activity.MoreList"></activity>
+        <activity android:name=".Activity.MoreList" />
+        <activity android:name=".Activity.image"></activity>
     </application>
 
 </manifest>

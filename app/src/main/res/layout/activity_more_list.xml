@@ -1,9 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--tools:context="com.example.tsongling5.microbo.Activity.MoreList">-->
+
+<!--</android.support.constraint.ConstraintLayout>-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.tsongling5.microbo.Activity.MoreList">
+    android:orientation="vertical"
+    android:paddingLeft="8dp"
+    android:paddingRight="5dp"
+    android:weightSum="1"
 
-</android.support.constraint.ConstraintLayout>
+    android:elevation="10dp"
+
+    android:background="#ffffff"
+    app:layout_collapseParallaxMultiplier="1.0">
+
+
+    <!--<ListView-->
+        <!--android:id="@+id/ListView_more"-->
+        <!--android:layout_width="300dp"-->
+        <!--android:layout_height="300dp"-->
+
+        <!--&gt;</ListView>-->
+
+
+    <LinearLayout
+        android:layout_width="170dp"
+        android:layout_height="153dp"
+        android:background="#ffffff"
+        android:elevation="10dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingLeft="10dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/star"
+                />
+
+
+            <TextView
+                android:id="@+id/favorited"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="9dp"
+                android:layout_marginLeft="25dp"
+
+                android:text="收藏"
+                android:textSize="19dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/follow"
+                />
+
+            <TextView
+                android:id="@+id/cancelFollow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="15dp"
+                android:layout_marginLeft="25dp"
+                android:text="取消关注"
+                android:textSize="19dp" />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/report"
+                />
+
+            <TextView
+                android:id="@+id/report"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="9dp"
+                android:layout_marginLeft="25dp"
+                android:text="举报"
+                android:textSize="19dp" />
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+    </LinearLayout>
+</LinearLayout>

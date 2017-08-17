@@ -5,8 +5,10 @@ import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +27,10 @@ import java.util.List;
 public class WeiboAdapter extends ArrayAdapter<Weibo>{
     private int resourceId;
     private  Context context;
+    private PopupWindow popupWindow;
+    private View moreView;
+
+    private TextView favorited,cancelFollow,report;
 
 
     private ImageLoader imageLoader = ImageLoader.getInstance();
@@ -53,7 +59,7 @@ public class WeiboAdapter extends ArrayAdapter<Weibo>{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
-        Weibo weibo=getItem(position);
+        final Weibo weibo=getItem(position);
         View view;
         ViewHolder viewHolder;
 
@@ -140,6 +146,7 @@ public class WeiboAdapter extends ArrayAdapter<Weibo>{
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "more", Toast.LENGTH_LONG).show();
+                showMoreOption(v,weibo);
             }
         });
 
@@ -230,6 +237,58 @@ public class WeiboAdapter extends ArrayAdapter<Weibo>{
         }
 
         return BPics;
+    }
+
+    private void showMoreOption(View parent,Weibo data){
+
+        if(popupWindow == null){
+            LayoutInflater layoutInflater=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            moreView=layoutInflater.inflate(R.layout.activity_more_list,null);
+
+            favorited =(TextView)moreView.findViewById(R.id.favorited);
+            cancelFollow =(TextView)moreView.findViewById(R.id.cancelFollow);
+            report=(TextView)moreView.findViewById(R.id.report);
+
+            popupWindow=new PopupWindow(moreView,450,400);
+        }
+
+        favorited.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "收藏", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+
+
+
+
+
+
+        // 使其聚集
+        popupWindow.setFocusable(true);
+        // 设置允许在外点击消失
+        popupWindow.setOutsideTouchable(true);
+
+        // 这个是为了点击“返回Back”也能使其消失，并且并不会影响你的背景
+        popupWindow.setBackgroundDrawable(null);
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        // 显示的位置为:屏幕的宽度的一半-PopupWindow的高度的一半
+//        int xPos = windowManager.getDefaultDisplay().getWidth() / 2
+//                - popupWindow.getWidth() / 4;
+
+
+//        int xPos=100;
+//        Log.i("coder", "windowManager.getDefaultDisplay().getWidth()/2:"
+//                + windowManager.getDefaultDisplay().getWidth() / 2);
+//        //
+//        Log.i("coder", "popupWindow.getWidth()/2:" + popupWindow.getWidth() / 2);
+//
+//        Log.i("coder", "xPos:" + xPos);
+
+        popupWindow.showAsDropDown(parent, -410,20);
+
     }
 
 
