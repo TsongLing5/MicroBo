@@ -13,41 +13,44 @@
 
         <ImageView
             android:id="@+id/NameLayoutImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/ic_launcher"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
+            android:background="@mipmap/ic_launcher"
             android:layout_above="@+id/NameLayoutNameTextView"
             android:layout_centerHorizontal="true" />
+
         <TextView
-        android:id="@+id/NameLayoutNameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name"
-        android:layout_gravity="center_horizontal"
-        android:layout_above="@+id/NameLayoutSummary"
-        android:layout_centerHorizontal="true" />
+            android:id="@+id/NameLayoutNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/NameLayoutSummary"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:text="Name"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/NameLayoutSummary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="个人简介：为什么这样子"
+            android:layout_above="@+id/NameLayoutLocationTextView"
+            android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
-            android:layout_above="@+id/NameLayoutOtherTextView"
-            android:layout_centerHorizontal="true" />
+            android:text="个人简介：为什么这样子"
+            android:textSize="17sp" />
+
         <TextView
-            android:id="@+id/NameLayoutOtherTextView"
+            android:id="@+id/NameLayoutLocationTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="关注888|粉丝999"
-
-            android:layout_gravity="center_horizontal"
             android:layout_alignParentBottom="true"
+            android:text="Location"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="19dp" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="19dp"
+            android:textSize="17sp"/>
     </RelativeLayout>
-
 
 
     <LinearLayout
@@ -62,18 +65,21 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:orientation="vertical">
+
             <TextView
-                android:id="@+id/blog_count"
+                android:id="@+id/statuses_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                />
+                android:text="777" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="微博"/>
+                android:text="微博" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/Linearlayout_follow_count"
             android:layout_width="match_parent"
@@ -81,12 +87,14 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/follow_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="888"/>
+                android:text="888" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

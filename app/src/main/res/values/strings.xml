@@ -5,4 +5,8 @@
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 
     <string name="action_settings" translatable="false">Settings</string>
+    <string name="drawer_open" translatable="false">shsaz</string>
+    <string name="drawer_close" translatable="false">guanxle</string>
+    <string name="title_activity__about">Activity_About</string>
+
 </resources>

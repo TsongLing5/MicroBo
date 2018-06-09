@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.example.tsongling5.microbo.Activity.MainActivity;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
 /**

@@ -9,12 +9,13 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:weightSum="1">
 
     <ImageView
         android:id="@+id/portrait"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="116dp"
+        android:layout_height="108dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:src="@android:drawable/sym_def_app_icon" />
 
@@ -22,14 +23,17 @@
         android:id="@+id/nickname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="易易易易易易易易易易易易什么"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+        android:textSize="16sp"
+
+
+        android:text="名前"
+         />
 
     <TextView
         android:id="@+id/summary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="简介：为什么这样子" />
+        android:textSize="14sp"
+        android:text="简介：Nothing" />
 
 </LinearLayout>

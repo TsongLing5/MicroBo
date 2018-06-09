@@ -1,6 +1,7 @@
 package com.example.tsongling5.microbo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tsongling5.microbo.Activity.Activity_Comment;
 import com.example.tsongling5.microbo.utils.ScreenTools;
 import com.example.tsongling5.microbo.view.NineGridTestLayout;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -29,6 +31,7 @@ public class WeiboAdapter extends ArrayAdapter<Weibo>{
     private  Context context;
     private PopupWindow popupWindow;
     private View moreView;
+    private Weibo weibo;
 
     private TextView favorited,cancelFollow,report;
 
@@ -59,7 +62,7 @@ public class WeiboAdapter extends ArrayAdapter<Weibo>{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
-        final Weibo weibo=getItem(position);
+        weibo=getItem(position);
         View view;
         ViewHolder viewHolder;
 
@@ -131,6 +134,10 @@ public class WeiboAdapter extends ArrayAdapter<Weibo>{
         viewHolder.commentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Intent i=new Intent(context, Activity_Comment.class);
+                i.putExtra("Weibo_data", weibo);
+                context.startActivity(i);
                 Toast.makeText(context, "评论", Toast.LENGTH_LONG).show();
             }
         });

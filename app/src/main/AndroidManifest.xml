@@ -42,11 +42,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".AuthActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".Activity.MainActivity" />
         <activity android:name=".Activity.PersonalActivity" />
         <activity android:name=".Activity.Message" />
         <activity android:name=".Activity.MoreList" />
-        <activity android:name=".Activity.image"></activity>
+        <activity android:name=".Activity.image" />
+        <activity
+            android:name=".Activity.Activity_About"
+            android:label="@string/title_activity__about"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activity.Activity_Comment"></activity>
     </application>
 
 </manifest>

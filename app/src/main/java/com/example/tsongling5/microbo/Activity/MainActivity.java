@@ -1,7 +1,9 @@
-package com.example.tsongling5.microbo;
+package com.example.tsongling5.microbo.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -17,11 +19,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.tsongling5.microbo.Activity.Message;
-import com.example.tsongling5.microbo.Activity.PersonalActivity;
+import com.example.tsongling5.microbo.AccessTokenKeeper;
+import com.example.tsongling5.microbo.Constants;
+import com.example.tsongling5.microbo.R;
+import com.example.tsongling5.microbo.Status;
+import com.example.tsongling5.microbo.StatusList;
+import com.example.tsongling5.microbo.StatusesAPI;
+import com.example.tsongling5.microbo.User;
+import com.example.tsongling5.microbo.UsersAPI;
+import com.example.tsongling5.microbo.Weibo;
+import com.example.tsongling5.microbo.WeiboAdapter;
+import com.example.tsongling5.microbo.models.ErrorInfo;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
@@ -30,6 +43,8 @@ import com.sina.weibo.sdk.net.RequestListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+//import com.example.tsongling5.microbo.Activity.Message;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
@@ -43,11 +58,14 @@ public class MainActivity extends AppCompatActivity
     /** 用于获取微博信息流等操作的API */
     private StatusesAPI mStatusesAPI;
 
+    /** 用户信息接口 */
+    private UsersAPI mUsersAPI;
+
 
     private List<Weibo> weiboList= new ArrayList<>();
 
     private ListView weiboListView;
-    private  WeiboAdapter weiboAdapter;
+    private WeiboAdapter weiboAdapter;
     private View loadMore_View;
     private int loop=0;
 
@@ -56,12 +74,57 @@ public class MainActivity extends AppCompatActivity
     private String lastWeiboFlag;
     private FloatingActionButton fab;
 
+
+    private TextView nav_name,nav_shortSummary;
+    private ImageView portrait;
+    private NavigationView navigationView;
+    private View View;
+
+
+    private User user;
+
+
+    private DrawerLayout drawer;
+
+
+
+    //Drawer Nagivation
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mDrawerToggle;
+    private CharSequence mDrawerTitle;
+    private CharSequence mTitle;
+
+    private ImageLoader imageLoader = ImageLoader.getInstance();
+
+
+    private Handler privateMessage=new Handler() {
+
+        public void handleMessage(Message msg)
+        {
+            switch (msg.what){
+                case 0x1:
+                    nav_shortSummary.setText("个人简介："+user.description);
+                    nav_name.setText(user.screen_name);
+                    imageLoader.displayImage(user.avatar_large,portrait);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+
 
 
 
@@ -69,6 +132,12 @@ public class MainActivity extends AppCompatActivity
         weiboAdapter=new WeiboAdapter(MainActivity.this,R.layout.weibolis_item,weiboList);
 
 //        weiboAdapter=new WeiboAdapter(MainActivity.this,R.layout.weibolis_item,weiboList);
+
+
+
+
+
+//        mDrawerLayout.openDrawer(Gravity.LEFT);
 
         /*
         * 加入加载更多的检测
@@ -128,6 +197,14 @@ public class MainActivity extends AppCompatActivity
         mStatusesAPI = new StatusesAPI(this, Constants.APP_KEY, mAccessToken);
 
         mStatusesAPI.friendsTimeline(0L, 0L, weiboMounts, 1, false, 0, false, mListener);
+
+        //mUsersAPI = new UsersAPI(this, Constants.APP_KEY, mAccessToken);
+
+
+        // 获取用户信息接口
+        mUsersAPI = new UsersAPI(this, Constants.APP_KEY, mAccessToken);
+        long uid = Long.parseLong(mAccessToken.getUid());
+        mUsersAPI.show(uid, mListener_User);
 
 
 
@@ -236,8 +313,19 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
+
+
+//        NavigationView Drawer code
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View headerView = navigationView.getHeaderView(0);
+        nav_name=(TextView)headerView.findViewById(R.id.nickname);
+        nav_shortSummary=(TextView)headerView.findViewById(R.id.summary);
+        portrait=(ImageView)headerView.findViewById(R.id.portrait) ;
+//        nav_name.setText("hahaaaaa");
+
+
     }
 
     @Override
@@ -266,6 +354,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
             return true;
         }
 
@@ -281,27 +370,32 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             // Handle the camera action
         } else if (id == R.id.nav_message) {
-                Toast.makeText(MainActivity.this,"消息",Toast.LENGTH_SHORT).show();
-            Intent i=new Intent(MainActivity.this,Message.class);
-            startActivity(i);
+
+            Intent message=new Intent(MainActivity.this,Message.class);
+//            startActivity(message);
+            Toast.makeText(MainActivity.this,"消息",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_publish) {
                 Toast.makeText(MainActivity.this,"发布",Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.nav_discovery) {
                  Toast.makeText(MainActivity.this,"发现",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_personal) {
-            Intent i=new Intent(MainActivity.this, PersonalActivity.class);
-            startActivity(i);
+            Intent personal=new Intent(MainActivity.this, PersonalActivity.class);
+            personal.putExtra("User_data", user);
+            startActivity(personal);
                   Toast.makeText(MainActivity.this,"个人",Toast.LENGTH_SHORT).show();
         }else if (id == R.id.nav_share) {
             Toast.makeText(MainActivity.this,"分享",Toast.LENGTH_SHORT).show();
         } else if(id == R.id.nav_about){
+
+            Intent i=new Intent(MainActivity.this,Activity_About.class);
+            startActivity(i);
             Toast.makeText(MainActivity.this,"关于",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_setting) {
             Toast.makeText(MainActivity.this,"设置",Toast.LENGTH_SHORT).show();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -373,6 +467,49 @@ public class MainActivity extends AppCompatActivity
 //            Toast.makeText(MainActivity.this, info.toString(), Toast.LENGTH_LONG).show();
         }
     };
+
+
+    /**
+     * 微博 OpenAPI 回调接口。获取到User数据
+     */
+    private RequestListener mListener_User = new RequestListener() {
+        @Override
+        public void onComplete(String response) {
+            if (!TextUtils.isEmpty(response)) {
+                //LogUtil.i(TAG, response);
+                // 调用 User#parse 将JSON串解析成User对象
+                 user = User.parse(response);
+                if (user != null) {
+
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Message message=new Message();
+                            message.what=1;
+                            privateMessage.sendMessage(message);
+                        }
+                    }).start();
+
+
+
+
+//                    shortSummary.setText(user.description);
+//                    name.setText(user.screen_name);
+                    Toast.makeText(MainActivity.this,
+                            "获取User信息成功，用户昵称：" + user.name,
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    //Toast.makeText(WBUserAPIActivity.this, response, Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+            @Override
+            public void onWeiboException(WeiboException e) {
+                //LogUtil.e(TAG, e.getMessage());
+                ErrorInfo info = ErrorInfo.parse(e.getMessage());
+                //Toast.makeText(WBUserAPIActivity.this, info.toString(), Toast.LENGTH_LONG).show();
+            }
+        };
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

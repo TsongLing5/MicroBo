@@ -19,13 +19,15 @@ package com.example.tsongling5.microbo;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
+
 /**
  * 用户信息结构体。
  * 
  * @author SINA
  * @since 2013-11-24
  */
-public class User {
+public class User implements Serializable {
 
     /** 用户UID（int64） */
     public String id;
@@ -101,7 +103,7 @@ public class User {
     public String mbtype;
     public String mbrank;
     public String block_word;
-    
+
     public static User parse(String jsonString) {
         try {
             JSONObject jsonObject = new JSONObject(jsonString);

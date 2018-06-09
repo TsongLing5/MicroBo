@@ -1,11 +1,12 @@
 package com.example.tsongling5.microbo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by TsongLing5 on 2016/12/24.
  */
-public class Weibo {
+public class Weibo implements Serializable{
 
     private String weiboId;                  //微博ID
     private String userImage;             //博主头像
